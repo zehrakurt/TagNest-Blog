@@ -1,8 +1,8 @@
 import express from 'express';
-import categoryRoutes from './routes/categoryRoutes';
-import postRoutes from './routes/postRoutes';
-import commentRoutes from './routes/commentRoutes';
-import tagRoutes from './routes/tagRoutes';
+import categoryRoutes from '../src/routers/categoryRoutes';
+import postRoutes from '../src/routers/postRoutes';
+import commentRoutes from '../src/routers/commentRoutes';
+import tagRoutes from '../src/routers/tagRoutes';
 
 const app = express();
 
