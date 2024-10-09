@@ -9,11 +9,10 @@ import {
 
 const router = Router();
 
-// CRUD routes for categories
-router.post('/', createCategory);          // Create a new category
-router.get('/', getAllCategories);         // Get all categories
-router.get('/:id', getCategoryById);       // Get a single category by ID
-router.patch('/:id', updateCategory);      // Update a category by ID
-router.delete('/:id', deleteCategory);     // Delete a category by ID
+router.post('/', createCategory);        
+router.get('/', getAllCategories);         
+router.get('/:id', getCategoryById);       
+router.patch('/:id', updateCategory);     
+router.delete('/:id', deleteCategory);     
 
 export default router;
