@@ -1,9 +1,12 @@
 import { Router } from 'express';
-import { createComment } from '../controllers/commentController';
+import { createComment, getComments, getComment, updateComment, deleteComment } from '../controllers/commentController';
 
 const router = Router();
 
 router.post('/', createComment);
-
+router.get('/', getComments);
+router.get('/:id', getComment);
+router.put('/:id', updateComment);
+router.delete('/:id', deleteComment);
 
 export default router;

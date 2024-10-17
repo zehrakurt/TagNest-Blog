@@ -20,14 +20,24 @@ export const getPosts = async (req: Request, res: Response) => {
   res.json(posts);
 };
 
-export const getPost = async (req: Request, res: Response) => {
-  const { id } = req.params;
-  const post = await prisma.post.findUnique({
-    where: { id: Number(id) },
-  });
-  if (!post) return res.status(404).send('Post not found');
-  res.json(post);
+export const getPost = async (req: Request, res: Response): Promise<Response | void> => {
+  try {
+    const { id } = req.params;
+
+    const post = await prisma.post.findUnique({
+      where: { id: Number(id) },
+    });
+
+    if (!post) {
+      return res.status(404).json({ message: 'Post bulunamadı' });
+    }
+
+    return res.status(200).json(post);
+  } catch(error){
+    res.status(400).json({message:'error'})
+}
 };
+
 
 export const updatePost = async (req: Request, res: Response) => {
   const { id } = req.params;

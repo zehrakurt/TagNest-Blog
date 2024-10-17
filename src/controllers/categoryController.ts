@@ -3,15 +3,30 @@ import { PrismaClient } from '@prisma/client';
 
 const prisma = new PrismaClient();
 
+
+
+
+
 export const createCategory = async (req: Request, res: Response): Promise<void> => {
   const { name } = req.body;
-  const category = await prisma.category.create({
-    data: {
-      name,
-    },
-  });
-  res.status(201).json(category);
+
+  if (!name) {
+    res.status(400).json({ error: "Name alanı zorunludur." });
+    return;
+  }
+
+  try {
+    const category = await prisma.category.create({
+      data: { name },
+    });
+
+    res.status(201).json(category);
+  } catch(error){
+    res.status(400).json({message:'error'})
+}
 };
+
+
 
 export const getAllCategories = async (req: Request, res: Response): Promise<void> => {
   const categories = await prisma.category.findMany();
@@ -26,13 +41,13 @@ export const getCategoryById = async (req: Request, res: Response): Promise<void
     });
 
     if (!category) {
-      res.status(404).json({ message: 'Category not found' });
+      res.status(404).json({ message: 'Category bulunamadı' });
     } else {
       res.status(200).json(category);
     }
-  } catch (error) {
-    res.status(500).json({ message: 'Server error', error });
-  }
+  } catch(error){
+    res.status(400).json({message:'error'})
+}
 };
 
 export const updateCategory = async (req: Request, res: Response): Promise<void> => {
