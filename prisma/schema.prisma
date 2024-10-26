@@ -55,3 +55,18 @@ model PostTag {
 
   @@id([post_id, tag_id])
 }
+model User {
+  id             Int       @id @default(autoincrement())
+  name           String
+  username       String    @unique
+  hashed_password String
+  role           Role      @default(MEMBER)
+  created_at     DateTime  @default(now())
+  deleted_at     DateTime? @default(null)
+}
+
+enum Role {
+  MEMBER
+  MODERATOR
+  ADMIN
+}
