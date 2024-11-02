@@ -10,9 +10,9 @@ export const createUser = async (req: Request, res: Response, next: NextFunction
     const user = await prisma.user.create({
       data: { name, username, hashed_password: hashedPassword },
     });
-    res.json(user); // Yanıtı gönderdik, dönüş yok
+    res.json(user); 
   } catch (error) {
-    next(error); // Hata durumunda next ile hata yönlendirmesi
+    next(error); 
   }
 };
 
