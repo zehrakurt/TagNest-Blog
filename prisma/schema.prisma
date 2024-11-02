@@ -62,7 +62,7 @@ model User {
   hashed_password String
   role           Role      @default(MEMBER)
   created_at     DateTime  @default(now())
-  deleted_at     DateTime? @default(null)
+  deleted_at     DateTime?
 }
 
 enum Role {
@@ -70,3 +70,4 @@ enum Role {
   MODERATOR
   ADMIN
 }
+
